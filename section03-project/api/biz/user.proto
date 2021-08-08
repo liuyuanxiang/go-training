@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package biz;
+
+import "google/api/annotations.proto";
+
+option go_package = "section03-project/api/biz;biz";
+
+
+service UserService {
+  rpc CreateUser (CreateUserReq) returns (CreateUserRsp) {
+    option (google.api.http) = {
+      post: "/api/user/add",
+      body: "*"
+    };
+  }
+
+  rpc GetUser (GetUserReq) returns (GetUserRsp) {
+    option (google.api.http) = {
+      get: "/api/user/one",
+    };
+  }
+
+  rpc ListUser (ListUserReq) returns (ListUserRsp) {
+    option (google.api.http) = {
+      get: "/api/user/list",
+    };
+  }
+
+//  rpc CreateUserAddr (CreateUserAddrReq) returns (CreateUserAddrRsp) {
+//    option (google.api.http) = {
+//      post: "/api/user-addr/add",
+//      body: "*"
+//    };
+//  }
+//
+//  rpc GetUserAddr (GetUserAddrReq) returns (GetUserAddrRsp) {
+//    option (google.api.http) = {
+//      get: "/api/user-addr/one",
+//    };
+//  }
+//
+//  rpc ListUserAddr (ListUserAddrReq) returns (ListUserAddrRsp) {
+//    option (google.api.http) = {
+//      get: "/api/user-addr/list",
+//    };
+//  }
+
+//  rpc SetUserDefaultAddr (SetUserDefaultAddrReq) returns (SetUserDefaultAddrRsp) {
+//    option (google.api.http) = {
+//      post: "/api/user-addr/set-default-addr",
+//    };
+//  }
+}
+
+message CreateUserReq {
+  string username = 1;
+  string password = 2;
+}
+
+message CreateUserRsp {
+  string id = 1;
+  string username = 2;
+}
+
+message GetUserReq {
+  string id = 1;
+}
+
+message GetUserRsp {
+  string id = 1;
+  string username = 2;
+}
+
+
+message ListUserReq {
+  int64 page_num = 1;
+  int64 page_size = 10;
+}
+
+message ListUserRsp {
+  int64 currentPage = 2;
+  int64 pageSize = 3;
+  int64 totalCount = 4;
+  int64 totalPage = 5;
+  message User {
+    string id = 1;
+    string username = 2;
+  }
+  repeated User list = 1;
+}
+
+
+
+

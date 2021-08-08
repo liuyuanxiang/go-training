@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package common;
+
+import "google/protobuf/any.proto";
+
+message Response{
+  int64 errcode = 1;
+  string errmsg = 2;
+  google.protobuf.Any data = 3;
+}
+

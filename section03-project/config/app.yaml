@@ -1,0 +1,19 @@
+app:
+  name: section03-project
+  env: dev
+
+grpc:
+  port: 9039
+
+http:
+  port: 8038
+
+mysql:
+    host: "xxx.xxx.xxx.xx"
+    port: "3306"
+    user: "xxxx"
+    password: "xxxx"
+    database: "testdb"
+
+log:
+  path: ./runtime/logs/
